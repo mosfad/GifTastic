@@ -20,30 +20,54 @@ function createButtons() {
     
 }
 //function adds url to html document.
-function createImages(imgURL) {
+function createImages(imgURL, ratingData, j) {
     var imgTag = $("<img>");
+    var pRating = $("<p>");
+    var divOneGif = $("<div>");
+    divOneGif.attr("id", "gif-" + j);
+    pRating.addClass("ratings-info");
+    pRating.text(ratingData);
     imgTag.addClass("img-gifs");
     imgTag.attr("src", imgURL);
     imgTag.attr("alt", "GIF of......");
-    $("#gif-container").append(imgTag);
+    imgTag.attr("width", "250");
+    imgTag.attr("height", "150");
+    //displayRating(rD);
+    //add rating and corresponding gif to their div.
+    $(divOneGif).append(pRating);
+    $(divOneGif).append(imgTag);
+    //add div for each gif and rating to the gifs container
+    $("#gifs-container").append(divOneGif);
+    //$("#gif-container").append(imgTag);
+    //$(imgTag).before(pRating);
     
 }
+
+/*function displayRating(ratingData) {
+    var pRating = $("<p>");
+    pRating.addClass("ratings-info");
+    pRating.text(ratingData);
+}*/
 //function populates url array for a topic
 function displayGifs(objArray) {
     //empty url array for each new set of urls.
     urlArray = [];
     urlArrayStill = [];
+    //loop through list of gifs 
     for (var i = 0; i < objArray.length; i++) {
         urlArrayStill.push(objArray[i].images.original_still.url);
         urlArray.push(objArray[i].images.original.url);
-        createImages(urlArrayStill[i]);
+        createImages(urlArrayStill[i], objArray[i].rating, i);
+        console.log(objArray[i].rating);
+        //displayRating(objArray[i].rating);
+        //$(".img-gifs").prepend(".ratings-info");
     }
 }
 //function uses data from button topics to display 10 gifs
 function grabGifs() {
     console.log("click event happended......");
     //clear old gifs before processing button click
-    $("#gif-container").empty();
+    $("#gifs-container").empty();
     //get button data for used for the query phrase
     
     var buttonInfo = $(this).attr("data-name");
