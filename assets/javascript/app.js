@@ -4,6 +4,7 @@ $(document).ready(function() {
 var topics = ["Street fighter 2", "Mario Kart", "Mortal Kombat 2", "tekken", "GoldenEye 007"];
 var numGifs = 10;
 var urlArray = [];
+var urlArrayStill = [];
 //create buttons for each topic in the array
 function createButtons() {
     //clear buttons to prevent repeating buttons.
@@ -21,6 +22,7 @@ function createButtons() {
 //function adds url to html document.
 function createImages(imgURL) {
     var imgTag = $("<img>");
+    imgTag.addClass("img-gifs");
     imgTag.attr("src", imgURL);
     imgTag.attr("alt", "GIF of......");
     $("#gif-container").append(imgTag);
@@ -30,10 +32,11 @@ function createImages(imgURL) {
 function displayGifs(objArray) {
     //empty url array for each new set of urls.
     urlArray = [];
+    urlArrayStill = [];
     for (var i = 0; i < objArray.length; i++) {
+        urlArrayStill.push(objArray[i].images.original_still.url);
         urlArray.push(objArray[i].images.original.url);
-        //create image using each url.
-        createImages(urlArray[i]);
+        createImages(urlArrayStill[i]);
     }
 }
 //function uses data from button topics to display 10 gifs
@@ -80,6 +83,26 @@ $("#add-topic").on("click", function(event) {
     createButtons();
     //how to clear input after adding button
     $("#topic-input").val("");
+})
+
+//function handles click events on any gif 
+$(document).on("click", ".img-gifs", function() {
+    //get the url of the image clicked
+    var clickedUrl = $(this).attr("src");
+    //animate gif, if clicked url is a still gif
+    if (urlArrayStill.includes(clickedUrl)) {
+        //get index of url inside the array
+        var indexUrl = urlArrayStill.indexOf(clickedUrl);
+        //use index of the URL to animate the gif
+        $(this).attr("src", urlArray[indexUrl]);
+    }
+    else if (urlArray.includes(clickedUrl)) {
+         //get index of url inside the array
+         var indexUrl = urlArray.indexOf(clickedUrl);
+         //use index of the URL to make the gif a still image
+         $(this).attr("src", urlArrayStill[indexUrl]);
+    }
+
 })
 
 //function handles click event get gifs for each topic; need to use event delegation for buttons that don't exist yet.
