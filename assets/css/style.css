@@ -1,0 +1,70 @@
+body{
+    line-height: 2;
+    background-image: url("../images/whirlpool.png");
+}
+
+#container{
+    margin: 20px;
+    padding: 20px;
+}
+
+#buttons-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.button-topics{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: #1e90ff;
+    color: #ffffff;
+    border-radius: 8px;
+    /*border: solid 2px #000000;*/
+    border: none;
+    margin: 5px;
+    padding: 12px;
+}
+
+#gif-form-container{
+    display: flex;
+
+}
+
+#movie-form{
+    flex: 30%;
+}
+
+#gifs-container{
+    flex: 70%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.img-gifs{
+    margin: 5px;
+    border: solid 2px #ffffff;
+}
+
+#topic-input{
+    width: 350px;
+    height: 35px;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+
+}
+
+#add-topic{
+    background-color: #a32e2e;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 7px;
+    margin: 5px 0px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+
+}
