@@ -24,6 +24,28 @@ body{
     margin: 5px;
     padding: 12px;
 }
+.button-topics:hover{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: #18548e;
+    color: #ffffff;
+    border-radius: 8px;
+    /*border: solid 2px #000000;*/
+    border: none;
+    margin: 5px;
+    padding: 12px;
+}
+.button-topics:active{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: #18548e;
+    color: #ffffff;
+    border-radius: 8px;
+    /*border: solid 2px #000000;*/
+    border: none;
+    margin: 5px;
+    padding: 12px;
+}
 
 #gif-form-container{
     display: flex;
@@ -48,6 +70,8 @@ body{
 #topic-input{
     width: 350px;
     height: 35px;
+    font-family: 'Hind Madurai', sans-serif;
+    font-size: 16px;
 }
 
 label{
@@ -60,6 +84,7 @@ label{
     background-color: #a32e2e;
     color: #ffffff;
     font-size: 16px;
+    width: 90px;
     padding: 7px;
     margin: 5px 0px;
     border: none;
@@ -67,4 +92,22 @@ label{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 
+}
+
+#add-gifs{
+    background-color: blue;
+    color: #ffffff;
+    font-size: 16px;
+    width: 90px;
+    padding: 7px;
+    margin: 5px 0px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.ratings-info{
+    margin: 5px;
+    font-family: 'Righteous', cursive;
 }

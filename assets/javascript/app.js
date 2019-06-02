@@ -1,11 +1,12 @@
-//make a call to giphy to output 10 GIFs with "streetfighter" in it's description
 //create an an array of strings, each one related to a topic that interests you
 $(document).ready(function() {
-var topics = ["Street fighter 2", "Mario Kart", "Mortal Kombat 2", "tekken", "GoldenEye 007"];
-var numGifs = 10;
-var urlArray = [];
-var urlArrayStill = [];
+var topics = ["Street fighter 2", "Mario Kart", "Mortal Kombat 2", "tekken", "NBA Jam", "Madden NFL 18", "Assassin's Creed Rogue"];
+var numGifs = 10;         
+var urlArray = [];        //url for animated gifs
+var urlArrayStill = [];   //url for still gifs
+var prevButtonInfo = "";  //topic from previous button click(used to request more gifs).
 //create buttons for each topic in the array
+
 function createButtons() {
     //clear buttons to prevent repeating buttons.
     $("#buttons-container").empty();
@@ -19,6 +20,7 @@ function createButtons() {
     }
     
 }
+
 //function adds url to html document.
 function createImages(imgURL, ratingData, j) {
     var imgTag = $("<img>");
@@ -26,28 +28,19 @@ function createImages(imgURL, ratingData, j) {
     var divOneGif = $("<div>");
     divOneGif.attr("id", "gif-" + j);
     pRating.addClass("ratings-info");
-    pRating.text(ratingData);
+    pRating.text("Rating: " + ratingData);
     imgTag.addClass("img-gifs");
     imgTag.attr("src", imgURL);
     imgTag.attr("alt", "GIF of......");
     imgTag.attr("width", "250");
     imgTag.attr("height", "150");
-    //displayRating(rD);
     //add rating and corresponding gif to their div.
     $(divOneGif).append(pRating);
     $(divOneGif).append(imgTag);
     //add div for each gif and rating to the gifs container
     $("#gifs-container").append(divOneGif);
-    //$("#gif-container").append(imgTag);
-    //$(imgTag).before(pRating);
-    
 }
 
-/*function displayRating(ratingData) {
-    var pRating = $("<p>");
-    pRating.addClass("ratings-info");
-    pRating.text(ratingData);
-}*/
 //function populates url array for a topic
 function displayGifs(objArray) {
     //empty url array for each new set of urls.
@@ -59,19 +52,32 @@ function displayGifs(objArray) {
         urlArray.push(objArray[i].images.original.url);
         createImages(urlArrayStill[i], objArray[i].rating, i);
         console.log(objArray[i].rating);
-        //displayRating(objArray[i].rating);
-        //$(".img-gifs").prepend(".ratings-info");
     }
 }
+
 //function uses data from button topics to display 10 gifs
-function grabGifs() {
+function grabGifs(req) {
+    //parameter is a reference from extra gif button click because $(this) reference won't work(undefined).
     console.log("click event happended......");
     //clear old gifs before processing button click
     $("#gifs-container").empty();
     //get button data for used for the query phrase
-    
-    var buttonInfo = $(this).attr("data-name");
-    console.log(buttonInfo);
+    var buttonInfo; 
+    if (req === "add-gifs" ) {
+        //get button info from last stored topic if user requested additional gifs.
+        buttonInfo = prevButtonInfo;
+        console.log("The previous button's topic is " + prevButtonInfo);
+    }
+    else {
+        //get the button info from the topic button clicked by the user.
+        buttonInfo = $(this).attr("data-name");
+        //keep numGifs at 10 except a user request was made
+        numGifs = 10;
+    }
+    //store button click for future access, in case user requests more gifs.
+    prevButtonInfo = buttonInfo;
+    console.log("topic clicked: " + buttonInfo);
+    console.log("previous topic clicked: " + prevButtonInfo);
     //put together the various components of the url and make a "get" request.
     var APIKEY = "wapsxKzf4544rsNgy4nnEgULiXvzYfMK";
     var queryTerm = buttonInfo;
@@ -79,18 +85,9 @@ function grabGifs() {
     xhr.done(function(response) { 
     console.log("success got data", response); 
     console.log(response.data.length);
-    //console.log("This is the embed urls: " + response.data[0].embed_url);
-    //console.log("The ratings for this GIF is " + response.data[0].rating);
-    //put all the original URLs in an array=========================how do I animate a still gif when clicked++++++++++++++++++++++++++++++++++++++++++
     displayGifs(response.data);
+    //change the color of the button clicked
     
-    
-    //put the GIFs in an image tag.
-    /*var imageGif = $("<img>");
-    imageGif.attr("src", response.data[0].images.original.url);
-    imageGif.attr("alt", "GIF is not loading")
-    $("#topic-container").append(imageGif);*/
-
 })
 }
 createButtons();
@@ -129,24 +126,17 @@ $(document).on("click", ".img-gifs", function() {
 
 })
 
+//function handles a request click event to add more gifs.
+$("#add-gifs").on("click", function(event) {
+    event.preventDefault();
+    numGifs = numGifs + 10;
+    var idRequestButton = $(this).attr("id");
+    console.log(idRequestButton);
+    grabGifs(idRequestButton);
+});
+
 //function handles click event get gifs for each topic; need to use event delegation for buttons that don't exist yet.
 $(document).on("click", ".button-topics", grabGifs);
-/*
-//put together the various components of the url and make a "get" request.
-var APIKEY = "wapsxKzf4544rsNgy4nnEgULiXvzYfMK";
-var queryTerm = "Eddie Murphy";
-var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + queryTerm + "&api_key=" + APIKEY + "&limit=5");
-xhr.done(function(response) { 
-    console.log("success got data", response); 
-    //console.log("This is the embed urls: " + response.data[0].embed_url);
-    console.log("The ratings for this GIF is " + response.data[0].rating);
-    //put the GIF in an image tag.
-    /*var imageGif = $("<img>");
-    imageGif.attr("src", response.data[0].images.original.url);
-    imageGif.attr("alt", "GIF is not loading")
-    $("#topic-container").append(imageGif);*/
-
-//});
 })
 
 
