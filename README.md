@@ -8,7 +8,8 @@ The program is a great way to relax and enjoy your break from routine. You can u
 
 *Please note that the program has ratings on each gif, in case you have minors interacting with the app*. You can also completely reset the app by refreshing your browser.
 
-
+### Deployed App
+https://mosfad.github.io/GifTastic/
 
 ### Contact me about GifTastic app
 maafadina@gmail.com

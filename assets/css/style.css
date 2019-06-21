@@ -35,17 +35,16 @@ body{
     margin: 5px;
     padding: 12px;
 }
-.button-topics:active{
+/*.button-topics:active{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     background-color: #18548e;
     color: #ffffff;
     border-radius: 8px;
-    /*border: solid 2px #000000;*/
     border: none;
     margin: 5px;
     padding: 12px;
-}
+}*/
 
 #gif-form-container{
     display: flex;

@@ -70,7 +70,7 @@ function grabGifs(req) {
     }
     else {
         //get the button info from the topic button clicked by the user.
-        buttonInfo = $(this).attr("data-name");
+        buttonInfo = req; //MAKE CHANGE HERE BY REPLACING "this"!
         //keep numGifs at 10 except a user request was made
         numGifs = 10;
     }
@@ -135,8 +135,29 @@ $("#add-gifs").on("click", function(event) {
     grabGifs(idRequestButton);
 });
 
+/*
+$(".button-topics").hover(function() {//NOT WORKING AS EXPECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $(this).css("background-color", "#18548e");
+}, function() {
+    $(".button-topics").css("background-color", "#1e90ff");
+}
+)*/
+
 //function handles click event get gifs for each topic; need to use event delegation for buttons that don't exist yet.
-$(document).on("click", ".button-topics", grabGifs);
+$(document).on("click", ".button-topics", function() {
+    //reset color of inactive topics buttons
+    $(".button-topics").css("background-color", "#1e90ff");
+    //change color of clicked topic button 
+    $(this).css("background-color", "#18548e");
+    console.log($(this).attr("data-name") + "....... <checking clicks for add topic buttons.>");
+    var dataName = $(this).attr("data-name");
+    grabGifs(dataName);
 })
+
+
+
+})
+
+
 
 
