@@ -1,19 +1,39 @@
 # GifTastic
 
-## Favorite Video Games 
+GifTastic allows users to randomly generate gifs of their favorite video games.
+The program is a great way to relax and enjoy your break from routine. You can use this app to reminisce about your favorite video games from decades ago.
 
-This program allows users to randomly generate gifs of their favorite video games. To start the game, the user can click on the any of default topic buttons. The clicked button will generate ten gifs of the topic chosen. Additionally, the user can also request an additional ten gifs by clicking on the "Extra gifs?" button. The program also provides a feature that allows users to add their favorite video games. To achieve this, type your favorite video game in the input form, and click the submit button to add the user input to the topic buttons. Now you can randomly generate your favorite game.
+## Overview
 
-The program is a great way to relax and enjoy your break from routine. You can use this app to reminisce about your favorite video games from decades ago. A future goal is to make the app interactive so that multiple users can share the same screen and enjoy some laughs.
+GifTastic is a front end(JavaScript) app that generates GIFs based on topic the user choses. The Giphy API is used to access a vast number of GIFS to make the app more dynamic.
 
-*Please note that the program has ratings on each gif, in case you have minors interacting with the app*. You can also completely reset the app by refreshing your browser.
+### Technologies used
 
-### Deployed App
+- HTML5
+- CSS
+- jQuery
+- Giphy API
+
+## Instructions
+
+### [Demo](https://drive.google.com/file/d/1_9kJh_PsQYFd0hOK97FUi0gdNGZZodO0/view)
+
+1. To start the game, the user can click on the any of default topic buttons and ten gifs of the chosen topic will be generated.
+2. To request ten additional gifs, click on the "Extra gifs?" button.
+3. To add a topic button, type your favorite video game in the input form.
+
+- Notes
+
+  - _Please note that the program has ratings on each gif, in case you have minors interacting with the app_. You can also completely reset the app by refreshing your browser.
+
+## Deployed App
+
 https://mosfad.github.io/GifTastic/
 
-### Contact me about GifTastic app
+## Contact us about GifTastic
+
 maafadina@gmail.com
 
+## Contributors
 
-### Contributors 
-Modupe Fadina
+Dupe Fadina
