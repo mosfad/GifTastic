@@ -1,6 +1,6 @@
 # GifTastic
 
-GifTastic allows users to randomly generate gifs of their favorite video games.
+GifTastic allows users to randomly generate GIFs of their favorite video games.
 The program is a great way to relax and enjoy your break from routine. You can use this app to reminisce about your favorite video games from decades ago.
 
 ## Overview
